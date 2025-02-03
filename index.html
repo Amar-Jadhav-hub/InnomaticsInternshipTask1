@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Budget Tracker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: auto;
+            text-align: center;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        header, footer {
+            background: #007bff;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+        }
+        section {
+            margin: 20px 0;
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+        }
+        th {
+            background: #007bff;
+            color: white;
+        }
+        input, select, button {
+            margin: 10px 0;
+            padding: 10px;
+            width: 100%;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        footer a {
+            color: white;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Personal Budget Tracker</h1>
+    </header>
+    
+    <section>
+        <h2>About This Tracker</h2>
+        <p>Use this tracker to manage your income and expenses efficiently. Add transactions, categorize them, and view your financial summary.</p>
+    </section>
+    
+    <section>
+        <h2>Add Income/Expense</h2>
+        <form id="budgetForm">
+            <select id="category">
+                <option value="Food">Food</option>
+                <option value="Housing">Housing</option>
+                <option value="House rent">House rent</option>
+                <option value="Light Bill">Light Bill</option>
+                <option value="Water Bill">Water Bill</option>
+                <option value="Wifi Bill">Wifi Bill</option>
+                <option value="Transportation">Transportation</option>
+                <option value="Entertainment">Entertainment</option>
+                <option value="Other">Other</option>
+            </select>
+            <input type="text" id="description" placeholder="Enter description" required>
+            <input type="number" id="amount" placeholder="Enter amount" required>
+            <input type="date" id="date" required>
+            <select id="type">
+                <option value="Income">Income</option>
+                <option value="Expense">Expense</option>
+            </select>
+            <button type="button" onclick="addTransaction()">Add Transaction</button>
+        </form>
+    </section>
+    
+    <section>
+        <h2>Budget Summary</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Category</th>
+                    <th>Description</th>
+                    <th>Amount</th>
+                    <th>Date</th>
+                    <th>Type</th>
+                </tr>
+            </thead>
+            <tbody id="transactionTable"></tbody>
+        </table>
+    </section>
+    
+    <footer>
+        <p>Budget Tracker v1.0 | <a href="#">Privacy Policy</a> | <a href="#">Terms of Use</a></p>
+    </footer>
+
+    <script>
+        function addTransaction() {
+            const category = document.getElementById('category').value;
+            const description = document.getElementById('description').value;
+            const amount = document.getElementById('amount').value;
+            const date = document.getElementById('date').value;
+            const type = document.getElementById('type').value;
+            if (amount && date && description) {
+                const table = document.getElementById('transactionTable');
+                const row = table.insertRow();
+                row.innerHTML = `<td>${category}</td><td>${description}</td><td>$${amount}</td><td>${date}</td><td>${type}</td>`;
+                document.getElementById('budgetForm').reset();
+            } else {
+                alert('Please enter all fields correctly!');
+            }
+        }
+    </script>
+</body>
+</html>
+
+
